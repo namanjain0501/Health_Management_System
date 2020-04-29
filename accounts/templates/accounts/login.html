@@ -2,14 +2,11 @@
 {%load crispy_forms_tags%}
 {%block content%}
     <div class = "custom-section">
-      <form method = "POST" action="{%url 'login'%}">
+      <form method = "POST">
         {% csrf_token %}
         <fieldset class="form =-group">
           <legend class = "border-bottom mb-4">Log In</legend>
           {{form|crispy}}
-          {% if request.GET.next %}
-          <input type="hidden" name="next" value="{{request.GET.next}}">
-          {% endif %}
         </fieldset>
         <div class="form-group">
           <button class = "btn btn-outline-info" type = "submit">Login</button>
@@ -17,7 +14,7 @@
       </form>
       <div class = "border-top pt-3">
         <small class = "text-muted">
-          Don't Have an Account? <a class = "ml-2" href = "{%url 'home'%}">Register</a>
+          Don't Have an Account? <a class = "ml-2" href = "/">Register</a>
         </small>
       </div>
     </div>

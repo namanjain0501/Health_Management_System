@@ -24,4 +24,23 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['username' , 'email' , 'password1','password2']
 
+class user_update(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ['username','email']
+
+class profile_pic_doc(forms.ModelForm):
+
+    class Meta:
+        model = Doctor
+        fields = ['image']
+
+class profile_pic_pat(forms.ModelForm):
+
+    class Meta:
+        model = Patient
+        fields = ['image']
+
     

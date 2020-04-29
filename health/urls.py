@@ -32,6 +32,7 @@ urlpatterns = [
     path('about/',views.about,name="about"),
     path('records/',include('records.urls')),
     path('search/',include('search.urls')),
+    path('profile/',acc_views.profile,name="profile"),
 ]
 
 if settings.DEBUG:
