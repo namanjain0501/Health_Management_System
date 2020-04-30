@@ -34,11 +34,13 @@
                                 <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                                 <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                             {% else %}
+                                <a class="nav-item nav-link" href="{% url 'search:search' %}">Search Doctor</a>
                                 <a class="nav-item nav-link" href="{% url 'records:view_record' %}">View Record</a>
                                 <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                                 <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                             {% endif %}
                         {% else %}
+                            <a class="nav-item nav-link" href="{% url 'search:search' %}">Search Doctor</a>
                             <a class="nav-item nav-link" href="{% url 'signup' %}">Signup</a>
                             <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
                         {% endif %}
