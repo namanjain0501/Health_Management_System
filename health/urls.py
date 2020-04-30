@@ -33,6 +33,8 @@ urlpatterns = [
     path('records/',include('records.urls')),
     path('search/',include('search.urls')),
     path('profile/',acc_views.profile,name="profile"),
+    path('edit_details/',acc_views.edit_details,name="edit-details"),
+    path('signup/',acc_views.signup,name="signup"),
 ]
 
 if settings.DEBUG:

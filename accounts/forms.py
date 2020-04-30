@@ -43,4 +43,16 @@ class profile_pic_pat(forms.ModelForm):
         model = Patient
         fields = ['image']
 
+class edit_detail_doc(forms.ModelForm):
+
+    class Meta:
+        model = Doctor
+        fields = ['phone','locality','home_address','work_address']
+
+class edit_detail_pat(forms.ModelForm):
+
+    class Meta:
+        model = Patient
+        fields = ['phone','address']
+
     

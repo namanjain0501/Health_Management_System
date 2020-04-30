@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'records',
     'crispy_forms',
     'search',
+    'appointment',
 ]
 
 MIDDLEWARE = [

@@ -23,14 +23,14 @@ gender_choices =(
 
 class Doctor(models.Model):
     name = models.CharField(max_length = 100)
-    phone = PhoneField(blank=True, help_text='Contact phone number')
+    phone = PhoneField(blank=True, help_text='Contact phone number') #update
     adhaar_num = models.CharField(max_length=20,blank=True)
     blood_group = models.CharField(max_length = 4 ,blank=True,choices=blood_grp_choices)
-    age = models.IntegerField(blank=True)
+    age = models.IntegerField(blank=True) 
     gender = models.CharField(max_length = 1,blank=True,choices = gender_choices)
-    locality = models.CharField(max_length=50)
-    home_address = models.CharField(max_length=150,blank=True)
-    work_address = models.CharField(max_length=150,blank=True)
+    locality = models.CharField(max_length=50) #update
+    home_address = models.CharField(max_length=150,blank=True) #update
+    work_address = models.CharField(max_length=150,blank=True) #update
     specialization = models.CharField(max_length=100)
     specialization_proof = models.FileField(blank=True)
     image = models.ImageField(default='def_M.jpg', upload_to = 'profile_pics')
@@ -39,21 +39,37 @@ class Doctor(models.Model):
 
     def __str__(self):
     	return self.name
+
+    def save(self, *args, **kwargs):
+        super(Doctor, self).save(*args, **kwargs)
+        img = Image.open(self.image.path)
+        if img.height > 300 or img.width > 300:
+            output_size = (300,300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
       
 
 class Patient(models.Model):
     name = models.CharField(max_length = 100)
-    phone = PhoneField(blank=True, help_text='Contact phone number')
+    phone = PhoneField(blank=True, help_text='Contact phone number') #update
     blood_group = models.CharField(max_length = 4 ,blank=True,choices=blood_grp_choices)
-    age = models.IntegerField(blank=True)
+    age = models.IntegerField(blank=True) 
     gender = models.CharField(max_length=1, blank=True,choices=gender_choices)
-    address = models.CharField(max_length=150,blank=True)
+    address = models.CharField(max_length=150,blank=True) #update
     image = models.ImageField(default = 'def_M.jpg', upload_to = 'profile_pics')
     records = models.ManyToManyField(record)
     user = models.OneToOneField(User,on_delete=models.CASCADE)
 
     def __str__(self):
     	return self.name
+
+    def save(self, *args, **kwargs):
+        super(Patient, self).save(*args, **kwargs)
+        img = Image.open(self.image.path)
+        if img.height > 300 or img.width > 300:
+            output_size = (300,300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
 
 
 class Profile(models.Model):

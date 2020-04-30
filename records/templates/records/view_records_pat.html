@@ -1,0 +1,15 @@
+{%extends "base_layout.html" %}
+{%block content%}
+    <h1>Records :</h1>
+    {% for record in r1 %}
+    <article class="media content-section">
+    <img class = "rounded-circle article-img"src = "{{ record.doc.doctor.image.url }}">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="{%url 'records:record-detail' record.id%}">{{ record.doc.doctor.name }}</a>
+        <small class="text-muted"><br>Date & Time : {{ record.time }}</br></small>
+      </div>
+    </div>
+    </article>
+  {% endfor %}
+{%endblock content%}

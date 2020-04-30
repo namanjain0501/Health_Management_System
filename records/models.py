@@ -6,5 +6,8 @@ class record(models.Model):
     pat = models.ForeignKey(User,null=True, on_delete=models.CASCADE,related_name="re2")
 
     time = models.DateTimeField(auto_now_add=True)
-    symptoms = models.CharField(max_length=500)
-    pres = models.CharField(max_length=1000)
+    symptoms = models.CharField(blank=True,max_length=500)
+    pres = models.CharField(blank=True,max_length=1000)
+
+    def __str__(self):
+    	return self.pat.username

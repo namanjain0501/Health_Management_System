@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
-from .forms import DoctorSignup,PatientSignup,UserRegisterForm,user_update,profile_pic_doc,profile_pic_pat
+from .forms import DoctorSignup,PatientSignup,UserRegisterForm,user_update,profile_pic_doc,profile_pic_pat,edit_detail_doc,edit_detail_pat
 from django.contrib.auth import login,logout
 from .models import Doctor,Patient,Profile
 from django.contrib import messages
@@ -93,7 +93,7 @@ def profile(request):
     if request.method == 'POST':
         if request.user.profile.type == 'D':
             user_form = user_update(request.POST, instance=request.user)
-            pic_form = profile_pic_doc(request.POST,instance=request.user.doctor)
+            pic_form = profile_pic_doc(request.POST,request.FILES,instance=request.user.doctor)
 
             if user_form.is_valid() and pic_form.is_valid():
                 user_form.save()
@@ -109,7 +109,7 @@ def profile(request):
         
         else:
             user_form = user_update(request.POST, instance=request.user)
-            pic_form = profile_pic_pat(request.POST,instance=request.user.patient)
+            pic_form = profile_pic_pat(request.POST,request.FILES,instance=request.user.patient)
 
             if user_form.is_valid() and pic_form.is_valid():
                 user_form.save()
@@ -143,6 +143,41 @@ def profile(request):
                 'pic_form': pic_form
             }
             return render(request, 'accounts/profile_pat.html', context)
+
+@login_required(login_url="/login/")
+def edit_details(request):
+    if request.method == 'POST':
+        if request.user.profile.type == 'D':
+            form = edit_detail_doc(request.POST,instance=request.user.doctor)
+
+            if form.is_valid():
+                form.save()
+                messages.success(request, f'Details Updated')
+                return redirect('profile')
+ 
+            return render(request,'accounts/edit_details_doc.html',{'form':form})
+        
+        else:
+            form = edit_detail_pat(request.POST,instance=request.user.patient)
+
+            if form.is_valid():
+                form.save()
+                messages.success(request, f'Details Updated')
+                return redirect('profile')
+
+            return render(request,'accounts/edit_details_pat.html',{'form':form})
+
+    else:
+        if request.user.profile.type == 'D':
+            form = edit_detail_doc(instance = request.user.doctor)
+            return render(request,'accounts/edit_details_doc.html',{'form':form})
+        else:
+            form = edit_detail_pat(instance= request.user.patient)
+            return render(request,'accounts/edit_details_pat.html',{'form':form})
+
+def signup(request):
+    return render(request,'accounts/signup.html')
+
 
 
 
