@@ -25,7 +25,7 @@ SECRET_KEY = 'fg$u+^k458xg@hhr8=xc!0s@o&#=*vs@s5+v840db*$&1=nit6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['healthmanagement.herokuapp.com/','localhost']
+ALLOWED_HOSTS = ['healthmanagement.herokuapp.com','localhost']
 
 
 # Application definition
