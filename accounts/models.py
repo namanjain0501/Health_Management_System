@@ -2,6 +2,7 @@ from django.db import models
 from phone_field import PhoneField
 from django.contrib.auth.models import User
 from records.models import record 
+from appointment.models import appointment
 from PIL import Image
 
 blood_grp_choices =(
@@ -36,6 +37,7 @@ class Doctor(models.Model):
     image = models.ImageField(default='def_M.jpg', upload_to = 'profile_pics')
     patient_records = models.ManyToManyField(record,related_name="p1")
     user = models.OneToOneField(User,on_delete=models.CASCADE)
+    appointments = models.ManyToManyField(appointment,related_name="app_doc")
 
     def __str__(self):
     	return self.name
@@ -59,6 +61,7 @@ class Patient(models.Model):
     image = models.ImageField(default = 'def_M.jpg', upload_to = 'profile_pics')
     records = models.ManyToManyField(record)
     user = models.OneToOneField(User,on_delete=models.CASCADE)
+    appointments = models.ManyToManyField(appointment,related_name="app_pat")
 
     def __str__(self):
     	return self.name

@@ -9,6 +9,7 @@
         <small class="text-muted"><br>Clinic Address : {{ doctor.work_address }}</br></small>
         <small class="text-muted"><br>Contact : {{ doctor.phone }}</br></small>
         <small class="text-muted"><br>email : {{ doctor.user.email }}</br></small>
+        <a class="appointment-book" href="{% url 'appointment:book-appointment' doctor.id %}">Book Appointment</a>
       </div>
     </div>
     </article>

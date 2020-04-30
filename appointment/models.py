@@ -13,6 +13,9 @@ class appointment(models.Model):
     pat = models.ForeignKey(User,null=True, on_delete=models.CASCADE,related_name="ap2")
 
     date_time = models.CharField(max_length = 100)
-    status = models.CharField(max_length = 20 ,default='rejected',choices=status_choices)
-    doc_cmts = models.CharField(max_length=150)
+    status = models.CharField(max_length = 20 ,default='pending',choices=status_choices)
+    doc_cmts = models.CharField(max_length=150,blank=True)
+
+    def __str__(self):
+        return self.date_time
 

@@ -1,0 +1,20 @@
+{%extends "base_layout.html" %}
+{%block content%}
+    <h1>Appointments :</h1>
+    {% for ap in a1 %}
+    <article class="media content-section">
+    <img class = "rounded-circle article-img"src = "{{ ap.doc.doctor.image.url }}">
+    <div class="media-body">
+      <div class="article-metadata">
+        <small class="text-muted">Doctor : {{ ap.doc.doctor.name }}</br></small>
+        <small class="text-muted">Date & Time : {{ ap.date_time }}</br></small>
+        <small class="text-muted">Doctor comments : {{ ap.doc_cmts }}</br></small>
+        <small class="text-muted">Status : {{ ap.status }}</br></small>
+        {% if ap.status != 'cancelled' %}
+            <a href="{% url 'appointment:cancel-appointment' ap.id %}">Cancel</a>
+        {% endif %}
+      </div>
+    </div>
+    </article>
+  {% endfor %}
+{%endblock content%}

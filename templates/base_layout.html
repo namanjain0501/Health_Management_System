@@ -29,11 +29,13 @@
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
                             {% if user.profile.type == 'D' %}
+                                <a class="nav-item nav-link" href="{% url 'appointment:view-appointment' %}">View Appointments</a>
                                 <a class="nav-item nav-link" href="{% url 'records:add_record' %}">Add Record</a>
                                 <a class="nav-item nav-link" href="{% url 'records:view_record' %}">View/Update Record</a>
                                 <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
                                 <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                             {% else %}
+                                <a class="nav-item nav-link" href="{% url 'appointment:view-appointment' %}">View Appointments</a>
                                 <a class="nav-item nav-link" href="{% url 'search:search' %}">Search Doctor</a>
                                 <a class="nav-item nav-link" href="{% url 'records:view_record' %}">View Record</a>
                                 <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
