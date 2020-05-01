@@ -27,7 +27,7 @@ class Doctor(models.Model):
     phone = PhoneField(blank=True, help_text='Contact phone number') #update
     adhaar_num = models.CharField(max_length=20,blank=True)
     blood_group = models.CharField(max_length = 4 ,blank=True,choices=blood_grp_choices)
-    age = models.IntegerField(blank=True) 
+    age = models.IntegerField(null=True) 
     gender = models.CharField(max_length = 1,blank=True,choices = gender_choices)
     locality = models.CharField(max_length=50) #update
     home_address = models.CharField(max_length=150,blank=True) #update
@@ -55,7 +55,7 @@ class Patient(models.Model):
     name = models.CharField(max_length = 100)
     phone = PhoneField(blank=True, help_text='Contact phone number') #update
     blood_group = models.CharField(max_length = 4 ,blank=True,choices=blood_grp_choices)
-    age = models.IntegerField(blank=True) 
+    age = models.IntegerField(null=True) 
     gender = models.CharField(max_length=1, blank=True,choices=gender_choices)
     address = models.CharField(max_length=150,blank=True) #update
     image = models.ImageField(default = 'def_M.jpg', upload_to = 'profile_pics')
