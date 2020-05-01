@@ -9,10 +9,19 @@ class add_record_doc(forms.ModelForm):
     class Meta:
         model = record
         fields = ['pat','symptoms','pres']
+        labels = {
+            "pat" : "Patient",
+            "symptoms":"Symptoms",
+            "pres" : "Prescription"
+        }
 
 class update_record(forms.ModelForm):
 
     class Meta:
         model = record
         fields = ['symptoms','pres']
+        labels = {
+            "symptoms": "Symptoms",
+            "pres": "Prescription"
+        }
     
