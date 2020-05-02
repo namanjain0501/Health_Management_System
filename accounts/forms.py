@@ -9,7 +9,7 @@ class DoctorSignup(forms.ModelForm):
 
     class Meta:
         model = Doctor
-        fields = ['name','adhaar_num','phone','blood_group','age','gender','locality','home_address','work_address','specialization']
+        fields = ['name','adhaar_num','phone','blood_group','age','gender','locality','home_address','work_address','specialization','specialization_proof']
 
 class PatientSignup(forms.ModelForm): 
 

@@ -100,14 +100,14 @@ body {
     display: inline-block;    
   }
 
-  a.appointment-book {
+a.appointment-book {
     background-color: white;
     color: #33ccff;
     padding: 0.3em 1em;
    border-radius: 10px;
   }
   
-  a.appointment-book:hover{
+a.appointment-book:hover{
       color: white;
       background-color: #33ccff;
   }
