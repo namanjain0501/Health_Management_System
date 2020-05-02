@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from PIL import Image
 from django.core.files.base import ContentFile
+from django.core.mail import send_mail,mail_admins
 
 def signup_doctor(request):
     if request.method == 'POST':
@@ -24,6 +25,9 @@ def signup_doctor(request):
             doc = details_form.save(commit=False)
             doc.user = cur_user
             doc.save()
+
+            send_mail("Doctor Approval",f'Approval Request for Dr. {doc.name} received.',"",["namanjain0501@gmail.com"],fail_silently=False)
+
 
             login(request,cur_user)
             return redirect('/')

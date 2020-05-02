@@ -35,9 +35,10 @@ class Doctor(models.Model):
     specialization = models.CharField(max_length=100)
     specialization_proof = models.FileField(blank=True)
     image = models.ImageField(default='def_M.jpg', upload_to = 'profile_pics')
-    patient_records = models.ManyToManyField(record,related_name="p1")
+    patient_records = models.ManyToManyField(record,related_name="p1",blank=True)
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    appointments = models.ManyToManyField(appointment,related_name="app_doc")
+    appointments = models.ManyToManyField(appointment,related_name="app_doc",blank=True)
+
 
     def __str__(self):
     	return self.name
