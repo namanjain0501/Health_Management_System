@@ -6,12 +6,13 @@
     <img class = "rounded-circle article-img"src = "{{ ap.doc.doctor.image.url }}">
     <div class="media-body">
       <div class="article-metadata">
-        <small class="text-muted">Doctor : {{ ap.doc.doctor.name }}</br></small>
-        <small class="text-muted">Date & Time : {{ ap.date_time }}</br></small>
-        <small class="text-muted">Doctor comments : {{ ap.doc_cmts }}</br></small>
-        <small class="text-muted">Status : {{ ap.status }}</br></small>
+        <small class="text-muted"><b>Doctor :</b> {{ ap.doc.doctor.name }}</br></small>
+        <small class="text-muted"><b>Date & Time : </b>{{ ap.date_time }}</br></small>
+        <small class="text-muted"><b>Doctor comments : </b>{{ ap.doc_cmts }}</br></small>
+        <small class="text-muted"><b>Status : </b>{{ ap.status }}</br></small>
         {% if ap.status != 'cancelled' %}
-            <a href="{% url 'appointment:cancel-appointment' ap.id %}">Cancel</a>
+            <br>
+            <a href="{% url 'appointment:cancel-appointment' ap.id %}" class="cancel-button" >Cancel</a>
         {% endif %}
       </div>
     </div>

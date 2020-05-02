@@ -5,10 +5,11 @@
     <div class="media-body">
       <div class="article-metadata">
         <h2 class = "article-title">Dr. {{ doctor.name }}<h2>
-        <small class="text-muted"><br>Specializaions : {{ doctor.specialization }}</br></small>
-        <small class="text-muted"><br>Clinic Address : {{ doctor.work_address }}</br></small>
-        <small class="text-muted"><br>Contact : {{ doctor.phone }}</br></small>
-        <small class="text-muted"><br>email : {{ doctor.user.email }}</br></small>
+        <small class="text-muted"><br> <b> Specializaions :  </b> {{ doctor.specialization }}</small>
+        <small class="text-muted"><br> <b>Clinic Address : </b>{{ doctor.work_address }}</small>
+        <small class="text-muted"><br> <b>Contact No. : </b>{{ doctor.phone }}</small>
+        <small class="text-muted"><br><b>email : </b>{{ doctor.user.email }}</br></small>
+        <br>
         <a class="appointment-book" href="{% url 'appointment:book-appointment' doctor.id %}">Book Appointment</a>
       </div>
     </div>

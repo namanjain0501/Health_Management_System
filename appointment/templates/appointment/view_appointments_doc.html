@@ -11,8 +11,8 @@
         <small class="text-muted">Doctor comments : {{ ap.doc_cmts }}</br></small>
         <small class="text-muted">Status : {{ ap.status }}</br></small>
         {% if ap.status == 'pending' %}
-            <a href="{% url 'appointment:approve-appointment' ap.id %}">Approve</a>
-            <a href="{% url 'appointment:reject-appointment' ap.id %}">Reject</a>
+            <a href="{% url 'appointment:approve-appointment' ap.id %}" class="approve-button">Approve</a>
+            <a href="{% url 'appointment:reject-appointment' ap.id %}" class="cancel-button">Reject</a>
         {% endif %}
         {% if ap.status != 'cancelled' %}
         <form class="form-inline my-2 my-lg-3" action="{% url 'appointment:edit-cmts' ap.id%}">
