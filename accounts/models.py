@@ -33,17 +33,24 @@ class Doctor(models.Model):
     home_address = models.CharField(max_length=150,blank=True) #update
     work_address = models.CharField(max_length=150,blank=True) #update
     specialization = models.CharField(max_length=100)
-    specialization_proof = models.FileField(blank=True)
+    specialization_proof = models.FileField(blank=True,upload_to='specialization_proofs')
     image = models.ImageField(default='def_M.jpg', upload_to = 'profile_pics')
     patient_records = models.ManyToManyField(record,related_name="p1",blank=True)
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     appointments = models.ManyToManyField(appointment,related_name="app_doc",blank=True)
+    points = models.IntegerField(default=0)
+    num_reviews = models.IntegerField(default=0)
+    rating = models.IntegerField(default=0)
 
 
     def __str__(self):
     	return self.name
 
     def save(self, *args, **kwargs):
+        if self.num_reviews == 0:
+            self.rating = 0
+        else:
+            self.rating = self.points/self.num_reviews
         super(Doctor, self).save(*args, **kwargs)
         img = Image.open(self.image.path)
         if img.height > 300 or img.width > 300:

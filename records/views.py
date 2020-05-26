@@ -9,16 +9,18 @@ from .models import record
 def view_patient_records(request):
     if request.user.profile.type == 'D':
         r1 = request.user.doctor.patient_records.all()
+        r1 = r1[::-1]
         return render(request,'records/view_records_doc.html',{'r1':r1})
     else:
         r1 = request.user.patient.records.all()
+        r1 = r1[::-1]
         return render(request,'records/view_records_pat.html',{'r1':r1})
 
 @login_required(login_url="/login/")
 def record_detail(request,id):
     if request.method == 'POST':
         r1 = record.objects.get(id=id)
-        form = update_record(request.POST,instance=r1)
+        form = update_record(request.POST,request.FILES,instance=r1)
         if form.is_valid():
             form.save()
             messages.success(request, f'Record Updated for patient : {r1.pat.patient.name} !')
@@ -38,7 +40,7 @@ def record_detail(request,id):
 def add_record(request):
     if request.user.profile.type == 'D':
         if request.method == 'POST':
-            form = add_record_doc(request.POST)
+            form = add_record_doc(request.POST,request.FILES)
             if form.is_valid():
                 rec = form.save(commit=False)
                 rec.doc = request.user

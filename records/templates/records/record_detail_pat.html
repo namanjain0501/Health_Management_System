@@ -6,6 +6,22 @@
                 <h2><b>Date & Time : </b>{{r1.time}}</h2>
                 <h3><b>Symptoms : </b>{{r1.symptoms}}</h3>
                 <h3><b>Prescription : </b>{{r1.pres}}</h3>
+                <h3><b>File : </b><a href="{{r1.record_file.url}}">{{r1.record_file}}</a></h3>
+                {% if r1.rating == 0 %}
+                <form class="rating1" action="{% url 'ratings:edit-ratings' r1.id%}">
+                    <div class="rating-wrapper">
+                      <input type="radio" name="rating" value="5" id="star-1"><label for="star-1"></label>
+                      <input type="radio" name="rating" value="4" id="star-2"><label for="star-2"></label>
+                      <input type="radio" name="rating" value="3" id="star-3"><label for="star-3"></label>
+                      <input type="radio" name="rating" value="2" id="star-4"><label for="star-4"></label>
+                      <input type="radio" name="rating" value="1" id="star-5"><label for="star-5"></label>
+                    </div>
+                    <br>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Submit Rating</button>
+                </form>
+                {% else %}
+                <h3><b>Rating given : </b>{{r1.rating}} star</h3>
+                {% endif %}
             </div>
     </html>
 {% endblock content %}

@@ -8,20 +8,22 @@ class add_record_doc(forms.ModelForm):
 
     class Meta:
         model = record
-        fields = ['pat','symptoms','pres']
+        fields = ['pat','symptoms','pres','record_file']
         labels = {
             "pat" : "Patient",
             "symptoms":"Symptoms",
-            "pres" : "Prescription"
+            "pres" : "Prescription",
+            "record_file":"File",
         }
 
 class update_record(forms.ModelForm):
 
     class Meta:
         model = record
-        fields = ['symptoms','pres']
+        fields = ['symptoms','pres','record_file']
         labels = {
             "symptoms": "Symptoms",
-            "pres": "Prescription"
+            "pres": "Prescription",
+            "record_file":"File",
         }
     

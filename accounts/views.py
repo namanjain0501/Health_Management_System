@@ -26,8 +26,6 @@ def signup_doctor(request):
             doc.user = cur_user
             doc.save()
 
-            send_mail("Doctor Approval",f'Approval Request for Dr. {doc.name} received.',"",["namanjain0501@gmail.com"],fail_silently=False)
-
 
             login(request,cur_user)
             return redirect('/')
@@ -116,6 +114,9 @@ def profile(request):
             pic_form = profile_pic_pat(request.POST,request.FILES,instance=request.user.patient)
 
             if user_form.is_valid() and pic_form.is_valid():
+                print(user_form)
+                user_form.username = "abcd"
+                print(user_form)
                 user_form.save()
                 pic_form.save()
                 messages.success(request, f'Your Account Has been Updated')

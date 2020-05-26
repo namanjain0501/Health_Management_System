@@ -34,9 +34,11 @@ def book_appointment(request,id):
 def view_appointment(request):
     if request.user.profile.type == 'P':
         a1 = request.user.patient.appointments.all()
+        a1 = a1[::-1]
         return render(request,'appointment/view_appointments_pat.html',{'a1':a1})
     else:
         a1 = request.user.doctor.appointments.all()
+        a1 = a1[::-1]
         return render(request,'appointment/view_appointments_doc.html',{'a1':a1})
     
 @login_required(login_url = '/login/')

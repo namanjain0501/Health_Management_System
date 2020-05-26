@@ -37,6 +37,7 @@ urlpatterns = [
     path('edit_details/',acc_views.edit_details,name="edit-details"),
     path('signup/',acc_views.signup,name="signup"),
     path('appointment/',include('appointment.urls')),
+    path('',include('ratings.urls')),
 ]
 
 if settings.DEBUG:

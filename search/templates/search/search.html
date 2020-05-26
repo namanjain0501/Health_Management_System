@@ -12,7 +12,13 @@
       <div class="article-metadata">
         <a class="mr-2" href="{%url 'search:doctor-detail' doctor.id%}">{{ doctor.name }}</a>
         <small class="text-muted"><br> <b>Specialization : </b>{{ doctor.specialization }}</br></small>
-        <small class="text-muted"><b>Locality : </b>{{ doctor.locality }}</small>
+        <small class="text-muted"><b>Locality : </b>{{ doctor.locality }}</small><br>
+        {% if doctor.num_reviews == 0 %}
+          <small class="text-muted"><b>Rating : no reviews</b></small>
+        {% else %}
+        <small class="text-muted"><b>Rating : {{doctor.rating}}</b></small>
+        {% endif %}
+
       </div>
     </div>
     </article>
